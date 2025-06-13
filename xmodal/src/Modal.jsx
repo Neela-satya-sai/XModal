@@ -44,20 +44,54 @@ function ReactModal({ modalOpen, setModalOpen }) {
         const name = e.target.name
         setFormData(prev => ({ ...prev, [name]: e.target.value }))
     }
+
+
   function handleForm(e) {
      e.preventDefault();
     // console.log(e.target.email.value);
      console.log(formData);
     if(formData.phonenumber.length<10){
       alert("Invalid phone number. Please enter a 10-digit phone number.");
+      return
     }
+
     let year = new Date().getFullYear();
     let month = new Date().getMonth()+1;
+     console.log(month);
+
+    if(month<=9){
+      month= `0${month}`;
+    }
+    
+    console.log(month);
     let dd = new Date().getDate();
+    if(dd <=9){
+      dd = `0${dd}`
+    }
     let presentDate = `${year}-${month}-${dd}`;
     console.log(presentDate);
+
+    let  userdate = formData.date;
+    let modfieduserdate  = userdate.split("-").join("-");
+
+    console.log(modfieduserdate)
+    if(modfieduserdate > presentDate ){
+       alert("Invalid date of birth. Date cannot be in the future.");
+       return
+    }
+    else{
+      setFormData({
+        username: '',
+        email: '',
+        phonenumber: '',
+        date: '',
+    });
+
+    closeModal();
+    }
+    
     // if(formData.date > new Date().getFullYear)
-   
+    
   }
 
   return (
@@ -82,7 +116,7 @@ function ReactModal({ modalOpen, setModalOpen }) {
            <label>Date of Birth:</label>
           <input type="date" id="dob" name="date" required onChange={handleChange} />
         
-          <Button className={styles["submit-button"]}  variant="contained" type="submit"  sx={{ textTransform: 'none' }}>Submit</Button>
+          <Button className={styles["submit-button"]}  variant="contained" type="submit"  sx={{ textTransform: 'none', marginTop: "15px" }}>Submit</Button>
         </form>
       </div>
     </Modal>
