@@ -4,7 +4,7 @@
 }
 
 .modal-content{
-
+   background-color: aliceblue;
 }
 
 form{
@@ -23,4 +23,7 @@ label{
   margin: 10px  0px;
   font-size: large;
   font-weight: 600;
+}
+.submit-button{
+
 }

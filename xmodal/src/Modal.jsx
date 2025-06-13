@@ -95,13 +95,13 @@ function ReactModal({ modalOpen, setModalOpen }) {
   }
 
   return (
-    <div className={styles.modal}>
+    <div >
          <Modal
       isOpen={modalOpen}
       onRequestClose={closeModal}
       style={customStyles}
       contentLabel="Example Modal"
-       
+       className={styles.modal}
     >
       {/* <button onClick={closeModal}>close</button> */}
      <div className={styles["modal-content"]}>
