@@ -2,7 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import { useState } from 'react';
 import {Button} from "@mui/material"
-import Modal from './Modal';
+import Modal from './Modal.jsx';
 
 function App() {
   const [modalOpen, setModalOpen] = useState(false);

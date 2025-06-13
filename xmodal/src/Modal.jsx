@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./Modal.module.css";
+import  "./Modal.css";
 import { useState } from "react";
 
 
@@ -97,8 +97,8 @@ function Modal({ modalOpen, setModalOpen }) {
     <>
 
      {modalOpen && (
-        <div className={styles.modal} onClick={() => setModalOpen(false)}>
-          <div className={styles["modal-content"]} onClick={e => e.stopPropagation()}>
+        <div class = "modal" onClick={() => setModalOpen(false)}>
+          <div class ="modal-content" onClick={e => e.stopPropagation()}>
          
                <form onSubmit={handleForm}>
           <h2>Fill Details</h2>
@@ -111,7 +111,7 @@ function Modal({ modalOpen, setModalOpen }) {
            <label>Date of Birth:</label>
           <input type="date" id="dob" name="date" required onChange={handleChange} />
           {/* console.log(styles); */}
-          <button className={styles["submit-button"]} type="submit">submit</button>
+          <button class="submit-button" type="submit">submit</button>
         </form>
           </div>
         </div>
