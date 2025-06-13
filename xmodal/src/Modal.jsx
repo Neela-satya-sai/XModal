@@ -2,29 +2,27 @@ import React from "react";
 import styles from "./Modal.module.css";
 import { useState } from "react";
 
-import ReactDOM from "react-dom";
-import Modal from "react-modal";
-import { Backdrop, Button } from "@mui/material";
 
-const customStyles = {
-  content: {
-    width : '50%',
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
-    background: "rgba(234, 240, 243, 0.85)",
-     borderRadius : '15px',
-     padding:'2rem',
-  },
-};
+
+// const customStyles = {
+//   content: {
+//     width : '50%',
+//     top: "50%",
+//     left: "50%",
+//     right: "auto",
+//     bottom: "auto",
+//     marginRight: "-50%",
+//     transform: "translate(-50%, -50%)",
+//     background: "rgba(234, 240, 243, 0.85)",
+//      borderRadius : '15px',
+//      padding:'2rem',
+//   },
+// };
 
 // Make sure to bind modal to your appElement (https://reactcommunity.org/react-modal/accessibility/)
-Modal.setAppElement("#root");
+// Modal.setAppElement("#root");
 
-function ReactModal({ modalOpen, setModalOpen }) {
+function Modal({ modalOpen, setModalOpen }) {
   const [formData, setFormData] = useState({
         username: '',
         email: '',
@@ -86,26 +84,23 @@ function ReactModal({ modalOpen, setModalOpen }) {
         phonenumber: '',
         date: '',
     });
-
+   
     closeModal();
     }
     
     // if(formData.date > new Date().getFullYear)
+
     
   }
 
   return (
-    <div >
-         <Modal
-      isOpen={modalOpen}
-      onRequestClose={closeModal}
-      style={customStyles}
-      contentLabel="Example Modal"
-       className={styles.modal}
-    >
-      {/* <button onClick={closeModal}>close</button> */}
-     <div className={styles["modal-content"]}>
-        <form onSubmit={handleForm}>
+    <>
+
+     {modalOpen && (
+        <div className={styles.modal} onClick={() => setModalOpen(false)}>
+          <div className={styles["modal-content"]} onClick={e => e.stopPropagation()}>
+         
+               <form onSubmit={handleForm}>
           <h2>Fill Details</h2>
           <label>Username:</label>
           <input type="text" id="username"  name ="username" required onChange={handleChange}/>
@@ -115,43 +110,21 @@ function ReactModal({ modalOpen, setModalOpen }) {
           <input type="number" id="phone" name="phonenumber" required onChange={handleChange}/>
            <label>Date of Birth:</label>
           <input type="date" id="dob" name="date" required onChange={handleChange} />
-        
-          <Button className={styles["submit-button"]}  variant="contained" type="submit"  sx={{ textTransform: 'none', marginTop: "15px" }}>Submit</Button>
+          {/* console.log(styles); */}
+          <button className={styles["submit-button"]} type="submit">submit</button>
         </form>
-      </div>
-    </Modal>
+          </div>
+        </div>
+      )}
+    </>
 
-      </div>
    
+    
   );
 }
+   
+ 
 
-export default ReactModal;
+export default Modal;
 
-// function App() {
-//   let subtitle;
 
-//   return (
-//     <div>
-//       <button onClick={openModal}>Open Modal</button>
-//       <Modal
-//         isOpen={modalIsOpen}
-//         onAfterOpen={afterOpenModal}
-//         onRequestClose={closeModal}
-//         style={customStyles}
-//         contentLabel="Example Modal"
-//       >
-//         <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Hello</h2>
-//         <button onClick={closeModal}>close</button>
-//         <div>I am a modal</div>
-//         <form>
-//           <input />
-//           <button>tab navigation</button>
-//           <button>stays</button>
-//           <button>inside</button>
-//           <button>the modal</button>
-//         </form>
-//       </Modal>
-//     </div>
-//   );
-// }
